@@ -1,19 +1,17 @@
-import { LayoutContent } from "../public/styles/Global.styles";
+import { ReactNode } from "react";
+import { HomeContent } from "../public/styles/Global.styles";
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  
-	children: React.ReactNode;
-
-}>) {
+}: {
+  children: ReactNode;
+}) {
   return (
-    <html lang="pt">
-		<body>
-			<LayoutContent>
-				{children}
-				ssssssssssssssssssss
-			</LayoutContent>
+    <html lang="pt-BR">
+      <body>
+        <HomeContent>
+          {children}
+        </HomeContent>
       </body>
     </html>
   );
