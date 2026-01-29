@@ -1,25 +1,24 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
-	padding: 0;
-	border: none;
 	background: transparent;
+	border: none;
 	cursor: pointer;
+	font-family: 'Poppins', sans-serif;
+	padding: 0;
 
 	.buttonContainer {
-		height: 60px;
-		width: 100%;
-		border-radius: 12px;
-		font-size: 20px;
-		font-weight: 500;
-		color: #fff;
-		background: #5a5a5a;
-
-		display: flex;
 		align-items: center;
+		background: #916677;
+		border-radius: 24px;
+		color: #fff;
+		display: flex;
+		font-size: 20px;
+		height: 60px;
 		justify-content: center;
-
 		transition: all 0.2s ease;
+		width: 100%;
+		box-shadow: 0 10px 6px rgba(0, 0, 0, 0.2);
 	}
 
 	&:hover .buttonContainer {
@@ -27,16 +26,16 @@ export const ButtonContainer = styled.button`
 	}
 
 	&.operator .buttonContainer {
-		background: #6b6b6b;
+		background: #7a5151;
 	}
 
 	&.function .buttonContainer {
-		background: #777;
+		background: #616d7c;
 		font-weight: 600;
 	}
 
 	&.result .buttonContainer {
-		background: #ff9500;
+		background: #586e70;
 		font-weight: 600;
 	}
 

@@ -2,26 +2,27 @@ import styled from "styled-components";
 
 export const CalculatorContent = styled.div`
     .calculatorContent {
-        background: #3a3a3a;
-        padding: 20px;
-        border-radius: 16px;
-        width: 320px;
+        background: #462929;
+        border-radius: 35px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        margin: 150px auto 0 auto;
+        padding: 20px;
+        width: 320px;
 
         &__display {
-            background: #1e1e1e;
+            align-items: flex-end;
+            background: #764444;
+            border-radius: 23px;
             color: #fff;
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            margin-bottom: 16px;
+            overflow: hidden;
+            padding: 16px;
 
             &__history {
+                color: #aaaaaa;
                 font-size: 14px;
-                opacity: 0.6;
                 margin-bottom: 4px;
             }
 

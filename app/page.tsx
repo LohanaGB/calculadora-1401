@@ -1,10 +1,11 @@
 import { HomeContent } from "../public/styles/Global.styles";
 import { Calculator } from "./globalComponents/calculator";
 
-export default function Home() {
+export const Home: React.FC = () => {
   return (
     <HomeContent>
       <Calculator />
     </HomeContent>
   );
 }
+export default Home

@@ -9,12 +9,16 @@ export const Calculator: React.FC = () => {
   const [firstValue, setFirstValue] = useState<number | null>(null);
   const [operator, setOperator] = useState<string | null>(null);
   const [secondValue, setSecondValue] = useState(false);
-  const [results, setResults] = useState("");
   const [error, setError] = useState(false);
+  //histórico da operação e resultado
+  const [results, setResults] = useState("");
 
+    //converte vírgula para ponto
     const formatToNumber = (value: string) => Number(value.replace(",", "."));
 
+
     const number = (value: string) => {
+        //reseta o display e começa novo cálculo
         if (error) {
             setDisplay(value);
             setResults("");
@@ -22,15 +26,18 @@ export const Calculator: React.FC = () => {
             return;
         }
 
+        //não concatena os números
         if (secondValue) {
             setDisplay(value);
             setSecondValue(false);
             return;
         }
 
+        //se 0, substitui, se não, concatena
         setDisplay(display === "0" ? value : display + value);
     };
 
+    //tratamento de virgula duplicada
     const handleVirgula = () => {
         if (error) return;
         if (!display.includes(",")) {
@@ -38,6 +45,7 @@ export const Calculator: React.FC = () => {
         }
     };
 
+    //tecla C, limpa tudo
     const handleClear = () => {
         setDisplay("0");
         setResults("");
@@ -47,30 +55,15 @@ export const Calculator: React.FC = () => {
         setError(false);
     };
 
+    //tecla DEL, limpa caracteres da direita pra esquerda
     const handleDelete = () => {
+        //limpa tudo
         if (error) {
             handleClear();
             return;
         }
+        //display nunca vazio
         setDisplay(display.length > 1 ? display.slice(0, -1) : "0");
-    };
-
-    const calculate = (first: number, second: number, operator: string): number | null => {
-        switch (operator) {
-            case "+":
-                return first + second;
-            case "−":
-                return first - second;
-            case "×":
-                return first * second;
-            case "÷":
-                if (second === 0) return null;
-                return first / second;
-            case "%":
-                return (first * second) / 100;
-            default:
-                return null;
-        }
     };
 
     const handleOperator = (op: string) => {
@@ -78,8 +71,10 @@ export const Calculator: React.FC = () => {
 
         const currentValue = formatToNumber(display);
 
+        //primeiro operador do cáculo
         if (firstValue === null) {
             setFirstValue(currentValue);
+            //segundo operador
             } else if (operator) {
             const result = calculate(firstValue, currentValue, operator);
 
@@ -95,9 +90,11 @@ export const Calculator: React.FC = () => {
 
         setOperator(op);
         setSecondValue(true);
+        //atualiza histórico
         setResults(`${display} ${op}`);
     };
 
+    
     const handleEquals = () => {
         if (error || firstValue === null || !operator) return;
 
@@ -110,6 +107,7 @@ export const Calculator: React.FC = () => {
             return;
         }
 
+        //mostra resultado e reseta cálculo
         setResults(`${results} ${display} =`);
         setDisplay(String(result).replace(".", ","));
         setFirstValue(null);
@@ -117,18 +115,34 @@ export const Calculator: React.FC = () => {
         setSecondValue(false);
     };
 
+    const calculate = (first: number, second: number, operator: string): number | null => {
+        switch (operator) {
+            //recebe os numeros e operador, e retorna os resultados calculados
+            case "+":
+                return first + second;
+            case "−":
+                return first - second;
+            case "×":
+                return first * second;
+            case "÷":
+                if (second === 0) return null;
+                return first / second;
+            case "%":
+                return (first * second) / 100;
+            default:
+                //null em caso de divisão por 0
+                return null;
+        }
+    };
+
   return (
     <CalculatorContent>
       <div className="calculatorContent">
         <div className="calculatorContent__display">
             {results && (
-                <div className="calculatorContent__display__history">
-                {results}
-                </div>
+                <div className="calculatorContent__display__history">{results}</div>
             )}
-            <div className="calculatorContent__display__main">
-                {display}
-            </div>
+            <div className="calculatorContent__display__main">{display}</div>
         </div>
 
         <div className="calculatorContent__buttonsGrid">
